@@ -17,9 +17,9 @@ private Button enviar;
     nombre= findViewById(R.id.editTextNombre);
     enviar= findViewById(R.id.button_Enviar);
     if(nombre.getText().toString()==""){
-        enviar.setActivated(false);
+        enviar.setEnabled(false);
     }else{
-        enviar.setActivated(true);
+        enviar.setEnabled(true);
     }
     }
 
