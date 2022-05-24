@@ -1,8 +1,10 @@
 package dario.texample.repaso6;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -25,6 +27,12 @@ private  EditText edtExponente;
         edtExponente = findViewById(R.id.editTextExponente2);
         edtBase = findViewById(R.id.editTextBase3);
 
+        String cad = edtBase.getText().toString();
+                Intent data = new Intent();
+        data.setData(Uri.parse(cad));
+        setResult(RESULT_OK,data);
+        finish();
+
     }
 
     public void Regresar(View view){
@@ -33,5 +41,14 @@ private  EditText edtExponente;
         Intent intent = new Intent(this,MainActivity.class);
 
         startActivity(intent);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if((requestCode == resultCode) && (resultCode == RESULT_OK)){
+            edtnombre.setText(data.getDataString());
+
+        }
     }
 }

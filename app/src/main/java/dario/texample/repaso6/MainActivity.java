@@ -1,5 +1,6 @@
 package dario.texample.repaso6;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -38,6 +39,13 @@ private EditText base1;
          startActivity(intent);
 
      }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if((requestCode == resultCode) && (resultCode == RESULT_OK)){
+            editTnombre.setText(data.getDataString());
 
+        }
+    }
 
 }
