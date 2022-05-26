@@ -3,6 +3,7 @@ package dario.texample.repaso6;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -12,43 +13,26 @@ import android.widget.EditText;
 
 public class Actividad2 extends AppCompatActivity {
 private Button regresar;
-private EditText edtnombre;
-private  EditText edtBase;
-private  EditText edtExponente;
+private EditText edtotro;
+    private int codigoRequerido=1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_actividad2);
         regresar= findViewById(R.id.buttonRegresar);
-        edtnombre= findViewById(R.id.editTextNombre1);
-        Bundle bundle = this.getIntent().getExtras();
-        edtnombre.setText(bundle.getString("nombre_usuario"));
-        edtExponente = findViewById(R.id.editTextExponente2);
-        edtBase = findViewById(R.id.editTextBase3);
-
-        String cad = edtBase.getText().toString();
-                Intent data = new Intent();
-        data.setData(Uri.parse(cad));
-        setResult(RESULT_OK,data);
-        finish();
+        edtotro= findViewById(R.id.otro);
 
     }
 
     public void Regresar(View view){
+String nombre=  edtotro.getText().toString();
+Intent intent = new Intent();
+intent.putExtra("nombre",nombre);
+setResult(Activity.RESULT_OK,intent);
+        finish();
 
-
-        Intent intent = new Intent(this,MainActivity.class);
-
-        startActivity(intent);
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if((requestCode == resultCode) && (resultCode == RESULT_OK)){
-            edtnombre.setText(data.getDataString());
 
-        }
-    }
 }
